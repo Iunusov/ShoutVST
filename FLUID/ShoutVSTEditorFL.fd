@@ -1,0 +1,401 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0304
+header_name {.h}
+code_name {.cxx}
+class ShoutVSTEditorFL {open
+} {
+  Function {ShoutVSTEditorFL()} {open
+  } {
+    code {buffer_about = new Fl_Text_Buffer();
+string aboutText = "";
+aboutText = "Version: "+string(SHOUTVST_FULL_VERSION_STR)+"\\n\\n";
+aboutText += ("Built on " + string(__DATE__) + " (" + string(__TIME__) + ")\\n");
+aboutText += ("CMake version: " + string(CMAKE_VERSION) + "\\n");
+aboutText += ("Compiler: " + string(CMAKE_GENERATOR) + "\\n");
+aboutText += "\\n";
+aboutText += "Original idea:\\nhttps://github.com/Gargaj/ShoutVST\\n";
+buffer_about->text(aboutText.c_str());} {}
+    Fl_Window about_window {
+      label {About ShoutVST} open
+      private xywh {-32000 -32000 403 288} type Double align 80 hide hotspot
+      code0 {\#include "comp_definitions.h"}
+      code1 {\#include <FL/filename.H>}
+      code2 {\#include "../version.h"} size_range {403 288 403 288}
+    } {
+      Fl_Button {} {
+        label OK
+        callback {closeAbout();}
+        private xywh {215 225 160 45}
+      }
+      Fl_Text_Display {} {
+        label ShoutVST
+        private xywh {1 40 385 155} box NO_BOX labeltype ENGRAVED_LABEL labelsize 34 align 5
+        code0 {o->buffer(buffer_about);}
+      }
+      Fl_Button {} {
+        label {Source Code (GitHub)}
+        callback {fl_open_uri("https://github.com/R-Tur/ShoutVST");}
+        xywh {20 225 160 45}
+        code0 {o->labelcolor(FL_DARK_BLUE);}
+      }
+    }
+    Fl_Window fl_window {open
+      xywh {360 156 677 480} type Double color 7 align 80 hotspot
+      code0 {\#include <string>}
+      code1 {using std::string;}
+      code2 {\#include <functional>} noborder size_range {667 486 667 486} visible
+    } {
+      Fl_Group group_connection {
+        label {Connection:} open
+        private xywh {10 30 280 220} box GTK_DOWN_BOX align 5
+      } {
+        Fl_Input connection_hostname {
+          label {Hostname:}
+          private xywh {95 45 175 25} box GTK_DOWN_BOX when 1
+          code0 {connection_hostname->value("localhost");}
+        }
+        Fl_Input connection_port {
+          label {Port:}
+          private xywh {95 75 175 25} box GTK_DOWN_BOX
+          code0 {connection_port->value("8000");}
+        }
+        Fl_Input connection_username {
+          label {UserName:}
+          private xywh {95 105 175 25} box GTK_DOWN_BOX
+          code0 {connection_username->value("source");}
+        }
+        Fl_Input connection_password {
+          label {Password:}
+          private xywh {95 135 175 25} box GTK_DOWN_BOX
+          code0 {connection_password->value("hackme");}
+        }
+        Fl_Input connection_mountpoint {
+          label {Mountpoint:}
+          private xywh {95 165 175 25} box GTK_DOWN_BOX
+          code0 {connection_mountpoint->value("/live");}
+        }
+        Fl_Group {} {open
+          private xywh {20 195 210 55}
+        } {
+          Fl_Round_Button proto_http {
+            label Icecast selected
+            private xywh {20 195 90 25} type Radio down_box ROUND_DOWN_BOX value 1
+          }
+          Fl_Round_Button proto_xaudiocast {
+            label {icecast 1.x}
+            private xywh {125 195 95 25} type Radio down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button proto_icy {
+            label SHOUTcast
+            private xywh {20 215 95 25} type Radio down_box ROUND_DOWN_BOX
+          }
+          Fl_Round_Button proto_roaraudio {
+            label RoarAudio
+            private xywh {125 215 90 25} type Radio down_box ROUND_DOWN_BOX
+          }
+        }
+      }
+      Fl_Group group_encoding {
+        label {Encoding:} open
+        private xywh {10 270 280 130} box GTK_DOWN_BOX align 5
+      } {
+        Fl_Input encoding_bitrate {
+          label {Bitrate:}
+          private xywh {95 280 175 25} box GTK_DOWN_BOX
+          code0 {encoding_bitrate->value("96");}
+        }
+        Fl_Input encoding_samplerate {
+          label {Samplerate:}
+          private xywh {95 315 175 25} box GTK_DOWN_BOX
+          code0 {encoding_samplerate->value("44100");}
+        }
+        Fl_Group {} {open
+          xywh {30 350 120 40}
+        } {
+          Fl_Round_Button radio_mp3 {
+            label mp3
+            private xywh {35 355 50 30} type Radio down_box ROUND_DOWN_BOX value 1 when 1
+          }
+          Fl_Round_Button radio_ogg {
+            label ogg
+            private xywh {95 355 45 30} type Radio down_box ROUND_DOWN_BOX when 1
+          }
+        }
+      }
+      Fl_Group group_stream {
+        label {Stream Info:} open
+        private xywh {305 30 350 290} box GTK_DOWN_BOX align 5
+      } {
+        Fl_Input stream_name {
+          label {Name:}
+          private xywh {390 45 245 25} box GTK_DOWN_BOX
+          code0 {stream_name->value("ShoutVST Stream");}
+        }
+        Fl_Input stream_url {
+          label {URL:}
+          private xywh {390 75 245 25} box GTK_DOWN_BOX
+          code0 {stream_url->value("https://github.com/R-Tur/ShoutVST");}
+        }
+        Fl_Input stream_genre {
+          label {Genre:}
+          private xywh {390 105 245 25} box GTK_DOWN_BOX
+        }
+        Fl_Input stream_artist {
+          label {Artist:}
+          private xywh {390 135 245 25} box GTK_DOWN_BOX
+        }
+        Fl_Input stream_title {
+          label {Title:}
+          private xywh {390 165 245 25} box GTK_DOWN_BOX
+        }
+        Fl_Text_Editor stream_description {
+          label {Description:}
+          private xywh {390 210 245 100} box GTK_DOWN_BOX align 7
+          code0 {Fl_Text_Buffer   *buff = new Fl_Text_Buffer();}
+          code1 {stream_description->buffer(buff);}
+        }
+      }
+      Fl_Group {} {open
+        xywh {15 430 260 40}
+      } {
+        Fl_Button button_connect {
+          label Connect
+          callback {connectCallback();}
+          private xywh {15 430 125 40}
+        }
+        Fl_Button button_disconnect {
+          label Disconnect
+          callback {disconnectCallback();}
+          private xywh {150 430 125 40}
+        }
+      }
+      Fl_Button {} {
+        label {?}
+        callback {showAbout();}
+        xywh {640 0 25 25}
+      }
+      Fl_Group {} {open
+        private xywh {320 335 330 145}
+      } {}
+      Fl_Group {} {
+        label {Metadata:} open
+        xywh {305 340 350 135} box GTK_DOWN_BOX align 5
+      } {
+        Fl_Text_Editor stream_metadata {
+          private xywh {315 355 245 100} box GTK_DOWN_BOX align 7
+          code0 {Fl_Text_Buffer   *buff = new Fl_Text_Buffer();}
+          code1 {stream_metadata->buffer(buff);}
+        }
+        Fl_Button {} {
+          label Send
+          callback {metadataCallback();}
+          private xywh {570 420 75 40}
+        }
+      }
+    }
+  }
+  Function {show()} {open return_type bool
+  } {
+    code {fl_window->show();
+return true;} {}
+  }
+  Function {hide()} {open return_type void
+  } {
+    code {fl_window->hide();} {}
+  }
+  Function {getEncodingFormat()} {open return_type string
+  } {
+    code {if(radio_mp3->value()){
+  return "mp3";
+} 
+if(radio_ogg->value()){
+  return "ogg";
+} 
+return "";} {}
+  }
+  Function {getHostName()} {return_type string
+  } {
+    code {const char *p = connection_hostname->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getPort()} {return_type string
+  } {
+    code {const char *p = connection_port->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getUserName()} {return_type string
+  } {
+    code {const char *p = connection_username->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getPassword()} {return_type string
+  } {
+    code {const char *p = connection_password->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getMountPoint()} {return_type string
+  } {
+    code {const char *p = connection_mountpoint->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getBitRate()} {return_type string
+  } {
+    code {const char *p = encoding_bitrate->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getSampleRate()} {return_type string
+  } {
+    code {const char *p = encoding_samplerate->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamName()} {return_type string
+  } {
+    code {const char *p = stream_name->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamURL()} {return_type string
+  } {
+    code {const char *p = stream_url->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamGenre()} {return_type string
+  } {
+    code {const char *p = stream_genre->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamArtist()} {return_type string
+  } {
+    code {const char *p = stream_artist->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamTitle()} {return_type string
+  } {
+    code {const char *p = stream_title->value();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamDescription()} {return_type string
+  } {
+    code {const char *p = stream_description->buffer()->text();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getStreamMetaData()} {return_type string
+  } {
+    code {const char *p = stream_metadata->buffer()->text();
+string result;
+if(p){
+  result = p;
+}
+return result;} {}
+  }
+  Function {getProtocol()} {open return_type string
+  } {
+    code {if(proto_http->value()){
+  return "http";
+} 
+if(proto_xaudiocast->value()){
+  return "xaudiocast";
+} 
+if(proto_icy->value()){
+  return "icy";
+} 
+if(proto_roaraudio->value()){
+  return "roaraudio";
+} 
+return "http";} {}
+  }
+  decl {std::function<void()> connectCallback;} {public local
+  }
+  decl {std::function<void()> disconnectCallback;} {public local
+  }
+  decl {std::function<void()> metadataCallback;} {public local
+  }
+  decl {Fl_Text_Buffer *buffer_about;} {private local
+  }
+  Function {setDisable(bool disable)} {return_type void
+  } {
+    code {if(disable){
+  group_connection->deactivate();
+  group_encoding->deactivate();
+  group_stream->deactivate();
+  button_connect->deactivate();
+  button_disconnect->activate();
+}
+else{
+  group_connection->activate();
+  group_encoding->activate();
+  group_stream->activate();
+  button_connect->activate();
+  button_disconnect->deactivate();
+}} {}
+  }
+  Function {showAbout()} {open return_type void
+  } {
+    code {about_window->show();} {}
+  }
+  Function {closeAbout()} {open return_type void
+  } {
+    code {about_window->hide();} {}
+  }
+  Function {~ShoutVSTEditorFL()} {open
+  } {
+    code {closeAbout();
+delete about_window;
+about_window = nullptr;
+
+hide();
+delete fl_window;
+fl_window = nullptr;} {}
+  }
+}
