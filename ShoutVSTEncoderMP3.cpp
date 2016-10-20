@@ -1,14 +1,6 @@
 #include "ShoutVSTEncoderMP3.h"
-#include <algorithm>
 #include <string>
 
-#ifdef min
-#undef min
-#endif
-
-#ifdef max
-#undef max
-#endif
 
 ShoutVSTEncoderMP3::ShoutVSTEncoderMP3(LibShoutWrapper& ls)
 	: ShoutVSTEncoder(ls) {}
@@ -57,7 +49,7 @@ bool ShoutVSTEncoderMP3::Initialize(const int bitrate, const int samplerate,
 	// Set MP3 buffer size, conservative estimate
 	mp3BufferSize = (int)(1.25 * (wavBufferSize / lame_get_num_channels(gfp)) + 7200);
 	pMP3Buffer = new unsigned char[mp3BufferSize];
-	pWAVBuffer = new short int[wavBufferSize];
+	pWAVBuffer = new float[wavBufferSize];
 	bInitialized = true;
 	return true;
 }
@@ -82,13 +74,13 @@ bool ShoutVSTEncoderMP3::Process(float** inputs, VstInt32 sampleFrames) {
 	guard lock(mtx_);
 	if (!bInitialized) return false;
 	for (VstInt32 i(0); i < sampleFrames; i++) {
-		pWAVBuffer[k++] = (short)(std::min(1.0f, std::max(-1.0f, inputs[0][i])) * 32767.0f);
-		pWAVBuffer[k++] = (short)(std::min(1.0f, std::max(-1.0f, inputs[1][i])) * 32767.0f);
+		pWAVBuffer[k++] = inputs[0][i];
+		pWAVBuffer[k++] = inputs[1][i];
 		if (k >= wavBufferSize) {
 			k = 0;
-			const int len = lame_encode_buffer_interleaved(
+			const int len = lame_encode_buffer_interleaved_ieee_float(
 				gfp, pWAVBuffer, wavBufferSize / lame_get_num_channels(gfp),
-				pMP3Buffer, 0);
+				pMP3Buffer, mp3BufferSize);
 			if (len < 0) {
 				return false;
 			}

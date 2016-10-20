@@ -16,5 +16,5 @@ private:
 	int wavBufferSize = 0;
 	int mp3BufferSize = 0;
 	unsigned char* pMP3Buffer = nullptr;
-	short int* pWAVBuffer = nullptr;
+	float* pWAVBuffer = nullptr;
 };
