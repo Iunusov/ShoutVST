@@ -19,6 +19,7 @@ ShoutVST::ShoutVST(audioMasterCallback audioMaster)
 	setUniqueID(CCONST('b', 'q', '9', 'e'));
 	canProcessReplacing();
 	canDoubleReplacing(false);
+	noTail(false);
 	encMP3 = new ShoutVSTEncoderMP3(libShoutWrapper);
 	encOGG = new ShoutVSTEncoderOGG(libShoutWrapper);
 	encSelected = encMP3;
