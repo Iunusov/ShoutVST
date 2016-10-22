@@ -52,6 +52,7 @@ void ShoutVST::processReplacing(float** inputs, float** outputs,
     out1[i] = in1[i];
     out2[i] = in2[i];
   }
+  guard lock(mtx_);
   if (encSelected) {
     if (!encSelected->Process(inputs, sampleFrames)) {
       disconnect();
@@ -86,6 +87,7 @@ void ShoutVST::connect() {
   }
   std::thread t([this]() {
     if (libShoutWrapper.waitForConnect()) {
+	  guard lock(mtx_);
       encSelected = encTmp;
       pEditor->DisableAccordingly();
     } else {
