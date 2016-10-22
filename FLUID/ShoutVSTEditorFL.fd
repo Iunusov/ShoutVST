@@ -34,7 +34,7 @@ buffer_about->text(aboutText.c_str());} {}
       }
       Fl_Button {} {
         label {Source Code (GitHub)}
-        callback {fl_open_uri("https://github.com/R-Tur/ShoutVST");}
+        callback {fl_open_uri("https://github.com/Iunusov/ShoutVST");}
         xywh {20 225 160 45}
         code0 {o->labelcolor(FL_DARK_BLUE);}
       }
@@ -134,7 +134,7 @@ buffer_about->text(aboutText.c_str());} {}
         Fl_Input stream_url {
           label {URL:}
           private xywh {390 75 245 25} box GTK_DOWN_BOX
-          code0 {stream_url->value("https://github.com/R-Tur/ShoutVST");}
+          code0 {stream_url->value("https://github.com/Iunusov/ShoutVST");}
         }
         Fl_Input stream_genre {
           label {Genre:}

@@ -1,11 +1,14 @@
-**ShoutVST** is a VST that enables streaming sound into Icecast/ShoutCast directly from VST hosts, ideal for streaming live performances directly from applications like **Traktor** or **Ableton** without the use of loopback methods. Only Windows is supported at the moment. 
+**ShoutVST** is a VST that enables streaming sound into Icecast/ShoutCast directly from VST hosts, ideal for streaming live performances directly from applications like **Traktor** or **Ableton** without the use of loopback methods. Only Windows is supported at the moment.
+
+Original idea by Gargaj: https://github.com/Gargaj/ShoutVST
+
 You can try that precompiled binary (Just copy it into your VST plugins folder):
 
 <a href="https://www.kvraudio.com/product/shoutvst-by-r-tur">
 <img src="http://jsound.org/img/download.png?1" alt="ShoutVST Download" height="175">
 </a>
 
-![ShoutVST](https://static.kvraudio.com/i/b/shoutvst.jpg "ShoutVST")
+![ShoutVST](https://static.kvraudio.com/i/b/shoutvst.1477178590.jpg "ShoutVST")
 
 #Prerequisites#
 
@@ -18,7 +21,7 @@ You can try that precompiled binary (Just copy it into your VST plugins folder):
 #Build#
 
 ```
-git clone https://github.com/R-Tur/ShoutVST.git
+git clone https://github.com/Iunusov/ShoutVST.git
 ```
 
 ```

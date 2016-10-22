@@ -14,7 +14,7 @@ ShoutVST::ShoutVST(audioMasterCallback audioMaster)
     : AudioEffectX(audioMaster, 1, 0) {
   setNumInputs(2);
   setNumOutputs(2);
-  setUniqueID(CCONST('b', 'q', '9', 'e'));
+  setUniqueID(CCONST('a', 'h', 'n', 'e'));
   canProcessReplacing();
   canDoubleReplacing(false);
   noTail(false);
@@ -121,7 +121,7 @@ bool ShoutVST::getVendorString(char* text) {
   if (!text) {
     return false;
   }
-  vst_strncpy(text, "github.com/R-Tur/ShoutVST", kVstMaxVendorStrLen);
+  vst_strncpy(text, "github.com/Iunusov/ShoutVST", kVstMaxVendorStrLen);
   return true;
 }
 
