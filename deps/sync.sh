@@ -2,11 +2,11 @@
 set -e
 echo "Sync started."
 for i in \
-https://github.com/R-Tur/libmp3lame-CMAKE.git \
-https://github.com/R-Tur/OGG-Vorbis-CMAKE.git \
-https://github.com/R-Tur/libshout-CMAKE.git \
+https://github.com/Iunusov/libmp3lame-CMAKE.git \
+https://github.com/Iunusov/OGG-Vorbis-CMAKE.git \
+https://github.com/Iunusov/libshout-CMAKE.git \
 https://github.com/IngwiePhoenix/FLTK.git \
-https://github.com/R-Tur/VST_SDK_2.4.git
+https://github.com/Iunusov/VST_SDK_2.4.git
 do
 filename="$(basename "$i")"
 dir="${filename%.*}"

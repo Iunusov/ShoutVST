@@ -121,7 +121,7 @@ bool ShoutVST::getVendorString(char* text) {
   if (!text) {
     return false;
   }
-  vst_strncpy(text, "github.com/R-Tur/ShoutVST", kVstMaxVendorStrLen);
+  vst_strncpy(text, "github.com/Iunusov/ShoutVST", kVstMaxVendorStrLen);
   return true;
 }
 

@@ -10,7 +10,7 @@ void ShoutVSTEditorFL::cb_OK(Fl_Button* o, void* v) {
 }
 
 void ShoutVSTEditorFL::cb_Source_i(Fl_Button*, void*) {
-  fl_open_uri("https://github.com/R-Tur/ShoutVST");
+  fl_open_uri("https://github.com/Iunusov/ShoutVST");
 }
 void ShoutVSTEditorFL::cb_Source(Fl_Button* o, void* v) {
   ((ShoutVSTEditorFL*)(o->parent()->user_data()))->cb_Source_i(o,v);
@@ -162,7 +162,7 @@ ShoutVSTEditorFL::ShoutVSTEditorFL() {
       } // Fl_Input* stream_name
       { stream_url = new Fl_Input(390, 75, 245, 25, "URL:");
         stream_url->box(FL_GTK_DOWN_BOX);
-        stream_url->value("https://github.com/R-Tur/ShoutVST");
+        stream_url->value("https://github.com/Iunusov/ShoutVST");
       } // Fl_Input* stream_url
       { stream_genre = new Fl_Input(390, 105, 245, 25, "Genre:");
         stream_genre->box(FL_GTK_DOWN_BOX);
