@@ -16,6 +16,7 @@ class ShoutVSTEncoder {
                           const int target_samplerate) = 0;
   virtual bool Close() = 0;
   virtual bool Process(float **inputs, VstInt32 sampleFrames) = 0;
+  virtual int getBitrate() = 0;
   virtual ~ShoutVSTEncoder();
 
  protected:

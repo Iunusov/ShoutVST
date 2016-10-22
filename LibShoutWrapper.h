@@ -1,9 +1,9 @@
 #pragma once
 
 #include <shout/shout.h>
+#include <atomic>
 #include <mutex>
 #include <string>
-#include <atomic>
 
 using std::string;
 using std::recursive_mutex;
@@ -20,13 +20,15 @@ class LibShoutWrapper {
  public:
   LibShoutWrapper();
   ~LibShoutWrapper();
-  bool InitializeICECasting(
-      const string &hostname, const string &protocol, unsigned short port,
-      const string &streamname, const string &streamurl,
-      const string &streamgenre, const string &streamdescription,
-      const string &bitrate, const string &targetsamplerate,
-      const string &artist, const string &title, const string &username,
-      const string &password, const string &mountpoint, const string &format);
+  bool InitializeICECasting(const string &hostname, const string &protocol,
+                            unsigned short port, const string &streamname,
+                            const string &streamurl, const string &streamgenre,
+                            const string &streamdescription,
+                            const string &bitrate,
+                            const string &targetsamplerate,
+                            const string &artist, const string &title,
+                            const string &username, const string &password,
+                            const string &mountpoint, const string &format);
 
   void StopICECasting();
 

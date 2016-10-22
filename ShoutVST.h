@@ -6,11 +6,14 @@
 #include "ShoutVSTEncoderOGG.h"
 
 #include <atomic>
+#include <memory>
+
+using std::recursive_mutex;
 
 class ShoutVST : public AudioEffectX {
  public:
   explicit ShoutVST(audioMasterCallback audioMaster);
-  ~ShoutVST();
+  virtual ~ShoutVST();
   virtual void processReplacing(float** inputs, float** outputs,
                                 VstInt32 sampleFrames) override;
   void connect();
@@ -26,11 +29,10 @@ class ShoutVST : public AudioEffectX {
   void UpdateMetadata(const string& metadata);
 
  private:
-  std::atomic<bool> bStreamConnected;
-  std::atomic<bool> bConnecting;
-  ShoutVSTEncoder* encSelected = nullptr;
-  ShoutVSTEncoderOGG* encOGG = nullptr;
-  ShoutVSTEncoderMP3* encMP3 = nullptr;
-  ShoutVSTEditor* pEditor = nullptr;
+  typedef std::lock_guard<std::recursive_mutex> guard;
+  recursive_mutex mtx_;
+  std::shared_ptr<ShoutVSTEncoder> encTmp;
+  std::shared_ptr<ShoutVSTEncoder> encSelected;
+  std::shared_ptr<ShoutVSTEditor> pEditor;
   LibShoutWrapper libShoutWrapper;
 };

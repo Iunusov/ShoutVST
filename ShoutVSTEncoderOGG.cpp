@@ -15,6 +15,7 @@ bool ShoutVSTEncoderOGG::Initialize(const int bitrate, const int samplerate,
   vorbis_info_init(&vi);
   long sample = (long)samplerate;
   long br = bitrate * 1000;
+  bitrate_ = bitrate;
   // ret = vorbis_encode_init_vbr(&vi,2,sample,10 / 10.0f);
   ret = vorbis_encode_init(&vi, 2, sample, br, br, br);
   if (ret) {
@@ -40,18 +41,14 @@ bool ShoutVSTEncoderOGG::Initialize(const int bitrate, const int samplerate,
     ogg_stream_packetin(&os, &header_code);
 
     bInitialized = true;
-
-    while (true) {
-      int result = ogg_stream_flush(&os, &og);
-      if (result <= 0) break;
-      if (!SendOGGPageToICE(&og)) {
-        Close();
-        return false;
-      }
-    }
   }
 
   return true;
+}
+
+int ShoutVSTEncoderOGG::getBitrate() {
+  guard lock(mtx_);
+  return bitrate_;
 }
 
 bool ShoutVSTEncoderOGG::Close() {

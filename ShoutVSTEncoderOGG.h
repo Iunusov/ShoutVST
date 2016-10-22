@@ -10,8 +10,10 @@ class ShoutVSTEncoderOGG : public ShoutVSTEncoder {
                   const int target_samplerate);
   bool Close();
   bool Process(float** inputs, VstInt32 sampleFrames);
+  virtual int getBitrate();
 
  private:
+  int bitrate_ = 0;
   bool SendOGGPageToICE(ogg_page* og);
   ogg_stream_state os; /* take physical pages, weld into a logical
      stream of packets */
