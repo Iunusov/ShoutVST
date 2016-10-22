@@ -14,7 +14,7 @@ ShoutVST::ShoutVST(audioMasterCallback audioMaster)
     : AudioEffectX(audioMaster, 1, 0) {
   setNumInputs(2);
   setNumOutputs(2);
-  setUniqueID(CCONST('b', 'q', '9', 'e'));
+  setUniqueID(CCONST('a', 'h', 'n', 'e'));
   canProcessReplacing();
   canDoubleReplacing(false);
   noTail(false);
