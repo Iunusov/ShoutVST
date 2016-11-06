@@ -1,4 +1,5 @@
-**ShoutVST** is a VST that enables streaming sound into Icecast/ShoutCast directly from VST hosts, ideal for streaming live performances directly from applications like **Traktor** or **Ableton** without the use of loopback methods. Only Windows is supported at the moment.
+# ShoutVST
+ShoutVST is a VST that enables streaming sound into Icecast/ShoutCast directly from VST hosts, ideal for streaming live performances directly from applications like **Traktor** or **Ableton** without the use of loopback methods. Only Windows is supported at the moment.
 
 Original idea by Gargaj: https://github.com/Gargaj/ShoutVST
 
@@ -10,7 +11,7 @@ You can try that precompiled binary (Just copy it into your VST plugins folder):
 
 ![ShoutVST](https://static.kvraudio.com/i/b/shoutvst.1477178590.jpg "ShoutVST")
 
-#Prerequisites#
+## Prerequisites
 
 [Visual Studio 2013+](https://www.visualstudio.com/downloads/download-visual-studio-vs)
 
@@ -18,7 +19,7 @@ You can try that precompiled binary (Just copy it into your VST plugins folder):
 
 [GIT](https://git-scm.com/download/win)
 
-#Build#
+## Build
 
 ```
 git clone https://github.com/Iunusov/ShoutVST.git
@@ -32,7 +33,7 @@ cd ShoutVST
 !!make_project!!.bat
 ```
 
-#Build (x64)#
+## Build (x64)
 
 ```
 mkdir build64
@@ -46,7 +47,7 @@ cd build64
 cmake -G "Visual Studio 14 2015 Win64" ..
 ```
 
-#Linux Build (e.g. UBUNTU)#
+## Linux Build (e.g. UBUNTU)
 
 ```
 sudo apt-get install build-essential
@@ -66,13 +67,13 @@ cmake ..
 make
 ```
 
-#The Result#
+## Result
 
 After successfull build the resulting DLL file will be available there (you can copy it into your VST folder):
 ```
 ShoutVST\ShoutVST_DLL
 ```
 
-#Tested Hosts#
+## Tested Hosts
 
 Cubase (5.1.1), Reaper (5.22), FL Studio (11.1.0), LMMS (1.1.3)
