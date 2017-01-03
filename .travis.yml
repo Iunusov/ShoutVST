@@ -1,0 +1,43 @@
+language: cpp
+
+notifications:
+  email: false
+  
+sudo: required
+
+os:
+  - linux
+  #- osx
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - gcc-4.8
+    - g++-4.8
+
+before_install:
+  - if [[ $TRAVIS_OS_NAME == linux   ]]; then LINUX=true; fi
+  - if [[ $TRAVIS_OS_NAME == osx     ]]; then OSX=true; fi
+  - if [[ $OSX ]]; then brew update; fi
+
+install:
+  - sudo apt-get -qq update
+  - sudo apt-get install libx11-dev
+  - wget https://www.cmake.org/files/v3.6/cmake-3.6.1-Linux-x86_64.sh
+  - sudo sh cmake-3.6.1-Linux-x86_64.sh --skip-license --prefix=/usr
+  - if [[ $LINUX && "$CXX" = "g++" ]]; then export CXX="g++-4.8" CC="gcc-4.8"; fi
+  - cd deps
+  - ./sync.sh
+  - cd ..
+script:
+  - mkdir build
+  - cd build
+  - cmake ..
+  - make -j3 -k
+  - make

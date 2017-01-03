@@ -1,6 +1,6 @@
 @echo off
 
-if not exist deps/VST_SDK_2.4 (
+if not exist deps/vst_sdk_2.4 (
 cd deps
 call sync
 cd ..

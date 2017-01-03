@@ -6,7 +6,7 @@ https://github.com/Iunusov/libmp3lame-CMAKE.git \
 https://github.com/Iunusov/OGG-Vorbis-CMAKE.git \
 https://github.com/Iunusov/libshout-CMAKE.git \
 https://github.com/IngwiePhoenix/FLTK.git \
-https://github.com/Iunusov/VST_SDK_2.4.git
+https://r-tur@bitbucket.org/r-tur/vst_sdk_2.4.git
 do
 filename="$(basename "$i")"
 dir="${filename%.*}"

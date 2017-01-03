@@ -7,6 +7,7 @@
 
 #include <atomic>
 #include <memory>
+#include <mutex>
 
 using std::recursive_mutex;
 
