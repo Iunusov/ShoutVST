@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/Iunusov/ShoutVST.svg?branch=master)](https://travis-ci.org/Iunusov/ShoutVST)
 # ShoutVST
 ShoutVST is a VST that enables streaming sound into Icecast/ShoutCast directly from VST hosts, ideal for streaming live performances directly from applications like **Traktor** or **Ableton** without the use of loopback methods. Only Windows is supported at the moment.
 
