@@ -1,35 +1,48 @@
 #include "audioeffect.h"
 
-extern AudioEffect* createEffectInstance(audioMasterCallback audioMaster);
+//------------------------------------------------------------------------
+/** Must be implemented externally. */
+extern AudioEffect *createEffectInstance(audioMasterCallback audioMaster);
 
 extern "C" {
 
-#if defined(__GNUC__) && \
+#if defined(__GNUC__) &&                                                       \
     ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #define VST_EXPORT __attribute__((visibility("default")))
-#else
+#elif WIN32
+#define VST_EXPORT __declspec(dllexport)
+#elif
 #define VST_EXPORT
 #endif
 
-VST_EXPORT AEffect* VSTPluginMain(audioMasterCallback audioMaster) {
-  if (!audioMaster(0, audioMasterVersion, 0, 0, 0, 0)) return 0;  // old version
+//------------------------------------------------------------------------
+/** Prototype of the export function main */
+//------------------------------------------------------------------------
+VST_EXPORT AEffect *VSTPluginMain(audioMasterCallback audioMaster) {
+  // Get VST Version of the Host
+  if (!audioMaster(0, audioMasterVersion, 0, 0, 0, 0))
+    return 0; // old version
 
-  AudioEffect* effect = createEffectInstance(audioMaster);
-  if (!effect) return 0;
+  // Create the AudioEffect
+  AudioEffect *effect = createEffectInstance(audioMaster);
+  if (!effect)
+    return 0;
 
+  // Return the VST AEffect structur
   return effect->getAeffect();
 }
 
+// support for old hosts not looking for VSTPluginMain
 #if (TARGET_API_MAC_CARBON && __ppc__)
-VST_EXPORT AEffect* main_macho(audioMasterCallback audioMaster) {
+VST_EXPORT AEffect *main_macho(audioMasterCallback audioMaster) {
   return VSTPluginMain(audioMaster);
 }
 #elif WIN32
-VST_EXPORT AEffect* MAIN(audioMasterCallback audioMaster) {
+VST_EXPORT AEffect *MAIN(audioMasterCallback audioMaster) {
   return VSTPluginMain(audioMaster);
 }
 #elif BEOS
-VST_EXPORT AEffect* main_plugin(audioMasterCallback audioMaster) {
+VST_EXPORT AEffect *main_plugin(audioMasterCallback audioMaster) {
   return VSTPluginMain(audioMaster);
 }
 #endif
@@ -39,25 +52,30 @@ VST_EXPORT AEffect* main_plugin(audioMasterCallback audioMaster) {
 //------------------------------------------------------------------------
 #if WIN32
 #include <windows.h>
-void* hInstance;
+void *hInstance;
 
 extern "C" {
-VST_EXPORT __declspec(dllexport) int main(audioMasterCallback audioMaster) {
+//------------------------------------------------------------------------
+/** Prototype of the export function main */
+//------------------------------------------------------------------------
+VST_EXPORT int main(audioMasterCallback audioMaster) {
   // Get VST Version
-  if (!audioMaster(0, audioMasterVersion, 0, 0, 0, 0)) return 0;  // old version
+  if (!audioMaster(0, audioMasterVersion, 0, 0, 0, 0))
+    return 0; // old version
 
   // Create the AudioEffect
-  AudioEffect* effect = createEffectInstance(audioMaster);
-  if (!effect) return 0;
+  AudioEffect *effect = createEffectInstance(audioMaster);
+  if (!effect)
+    return 0;
 
   return (int)effect->getAeffect();
 }
-}  // extern "C"
+} // extern "C"
 
 extern "C" {
 BOOL WINAPI DllMain(HINSTANCE hInst, DWORD dwReason, LPVOID lpvReserved) {
   hInstance = hInst;
   return 1;
 }
-}  // extern "C"
+} // extern "C"
 #endif
