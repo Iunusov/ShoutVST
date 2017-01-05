@@ -11,7 +11,7 @@ extern "C" {
 #define VST_EXPORT __attribute__((visibility("default")))
 #elif WIN32
 #define VST_EXPORT __declspec(dllexport)
-#elif
+#else
 #define VST_EXPORT
 #endif
 
