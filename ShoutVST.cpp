@@ -72,6 +72,9 @@ void ShoutVST::connect() {
   if (pEditor->getEncodingFormat() == "ogg") {
     encTmp = std::make_shared<ShoutVSTEncoderOGG>(libShoutWrapper);
   }
+  if (pEditor->getEncodingFormat() == "flac") {
+      encTmp = std::make_shared<ShoutVSTEncoderFLAC>(libShoutWrapper);
+  }
   if (!encTmp ||
       !encTmp->Initialize(GetBitrate(), (const int)updateSampleRate(),
                           GetTargetSampleRate()) ||

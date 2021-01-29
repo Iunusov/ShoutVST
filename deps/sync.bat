@@ -21,6 +21,15 @@ if not exist libshout-CMAKE (
     (cd libshout-CMAKE) && (git pull) && (cd ..)
 )
 
+)
+echo libflac...
+if not exist libflac (
+    (git clone https://github.com/xiph/flac.git)
+) else (
+    (cd flac) && (git pull) && (cd ..)
+)
+
+
 echo FLTK...
 if not exist FLTK (
     (git clone https://github.com/IngwiePhoenix/FLTK.git)

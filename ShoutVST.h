@@ -4,6 +4,7 @@
 #include "ShoutVSTEditor.h"
 #include "ShoutVSTEncoderMP3.h"
 #include "ShoutVSTEncoderOGG.h"
+#include "ShoutVSTEncoderFLAC.h"
 
 #include <atomic>
 #include <memory>

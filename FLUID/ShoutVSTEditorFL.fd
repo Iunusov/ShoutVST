@@ -1,5 +1,5 @@
 # data file for the Fltk User Interface Designer (fluid)
-version 1.0304
+version 1.0305
 header_name {.h}
 code_name {.cxx}
 class ShoutVSTEditorFL {open
@@ -110,7 +110,7 @@ buffer_about->text(aboutText.c_str());} {}
           code0 {encoding_samplerate->value("44100");}
         }
         Fl_Group {} {open
-          xywh {30 350 120 40}
+          xywh {30 350 180 40}
         } {
           Fl_Round_Button radio_mp3 {
             label mp3
@@ -119,6 +119,10 @@ buffer_about->text(aboutText.c_str());} {}
           Fl_Round_Button radio_ogg {
             label ogg
             private xywh {95 355 45 30} type Radio down_box ROUND_DOWN_BOX when 1
+          }
+          Fl_Round_Button radio_flac {
+            label flac
+            private xywh {155 355 45 30} type Radio down_box ROUND_DOWN_BOX when 1
           }
         }
       }
@@ -211,6 +215,9 @@ return true;} {}
 if(radio_ogg->value()){
   return "ogg";
 } 
+if(radio_flac->value()){
+  return "flac";
+}
 return "";} {}
   }
   Function {getHostName()} {return_type string
