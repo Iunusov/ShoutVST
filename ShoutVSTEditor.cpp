@@ -3,6 +3,10 @@
 #include <string>
 #include "ShoutVSTEditor.h"
 
+#ifdef __linux__
+#include <X11/Xlib.h>
+#endif
+
 recursive_mutex ShoutVSTEditor::mtx_;
 typedef std::lock_guard<std::recursive_mutex> guard;
 
@@ -107,6 +111,18 @@ bool ShoutVSTEditor::open(void* parentWindow) {
   // | WS_CHILD);
   SetParent(hWnd, (HWND)parentWindow);
 #endif
+
+#ifdef __linux__
+  Window xid = fl_xid(shoutVSTEditorFL->fl_window);
+  Display* display = XOpenDisplay(NULL);
+  if (display) {
+    Window parent = (Window)parentWindow;
+    XReparentWindow(display, xid, parent, 0, 0);
+    XSync(display, False);
+    XCloseDisplay(display);
+  }
+#endif
+
   shoutVSTEditorFL->fl_window->position(0, 0);
   DisableAccordingly();
   return true;
