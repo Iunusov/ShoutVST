@@ -147,6 +147,102 @@ string ShoutVSTEditor::GetTargetSampleRate() {
   return shoutVSTEditorFL->getSampleRate();
 }
 
+void ShoutVSTEditor::setHostName(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setHostName(value);
+  }
+}
+
+void ShoutVSTEditor::setPort(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setPort(value);
+  }
+}
+
+void ShoutVSTEditor::setUserName(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setUserName(value);
+  }
+}
+
+void ShoutVSTEditor::setPassword(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setPassword(value);
+  }
+}
+
+void ShoutVSTEditor::setMountPoint(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setMountPoint(value);
+  }
+}
+
+void ShoutVSTEditor::setProtocol(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setProtocol(value);
+  }
+}
+
+void ShoutVSTEditor::setBitrate(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setBitRate(value);
+  }
+}
+
+void ShoutVSTEditor::setTargetSampleRate(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setSampleRate(value);
+  }
+}
+
+void ShoutVSTEditor::setEncodingFormat(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setEncodingFormat(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamName(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamName(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamURL(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamURL(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamGenre(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamGenre(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamArtist(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamArtist(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamTitle(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamTitle(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamDescription(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamDescription(value);
+  }
+}
+
+void ShoutVSTEditor::setStreamMetaData(const string& value) {
+  if (shoutVSTEditorFL) {
+    shoutVSTEditorFL->setStreamMetaData(value);
+  }
+}
+
 void ShoutVSTEditor::DisableAccordingly() {
   guard lock(mtx_);
   shoutVSTEditorFL->setDisable(pVST->IsConnected());

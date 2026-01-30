@@ -377,6 +377,120 @@ string ShoutVSTEditorFL::getProtocol() {
   return "http";
 }
 
+void ShoutVSTEditorFL::setHostName(const string& value) {
+  if (connection_hostname) {
+    connection_hostname->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setPort(const string& value) {
+  if (connection_port) {
+    connection_port->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setUserName(const string& value) {
+  if (connection_username) {
+    connection_username->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setPassword(const string& value) {
+  if (connection_password) {
+    connection_password->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setMountPoint(const string& value) {
+  if (connection_mountpoint) {
+    connection_mountpoint->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setProtocol(const string& value) {
+  proto_http->value(0);
+  proto_xaudiocast->value(0);
+  proto_icy->value(0);
+  proto_roaraudio->value(0);
+
+  if (value == "http") {
+    proto_http->value(1);
+  } else if (value == "xaudiocast") {
+    proto_xaudiocast->value(1);
+  } else if (value == "icy") {
+    proto_icy->value(1);
+  } else if (value == "roaraudio") {
+    proto_roaraudio->value(1);
+  } else {
+    proto_http->value(1); // default
+  }
+}
+
+void ShoutVSTEditorFL::setBitRate(const string& value) {
+  if (encoding_bitrate) {
+    encoding_bitrate->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setSampleRate(const string& value) {
+  if (encoding_samplerate) {
+    encoding_samplerate->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setEncodingFormat(const string& value) {
+  radio_mp3->value(0);
+  radio_ogg->value(0);
+
+  if (value == "ogg") {
+    radio_ogg->value(1);
+  } else {
+    radio_mp3->value(1); // default
+  }
+}
+
+void ShoutVSTEditorFL::setStreamName(const string& value) {
+  if (stream_name) {
+    stream_name->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setStreamURL(const string& value) {
+  if (stream_url) {
+    stream_url->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setStreamGenre(const string& value) {
+  if (stream_genre) {
+    stream_genre->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setStreamArtist(const string& value) {
+  if (stream_artist) {
+    stream_artist->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setStreamTitle(const string& value) {
+  if (stream_title) {
+    stream_title->value(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setStreamDescription(const string& value) {
+  if (stream_description && stream_description->buffer()) {
+    stream_description->buffer()->text(value.c_str());
+  }
+}
+
+void ShoutVSTEditorFL::setStreamMetaData(const string& value) {
+  if (stream_metadata && stream_metadata->buffer()) {
+    stream_metadata->buffer()->text(value.c_str());
+  }
+}
+
 void ShoutVSTEditorFL::setDisable(bool disable) {
   if(disable){
     group_connection->deactivate();

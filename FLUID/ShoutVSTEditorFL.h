@@ -81,8 +81,24 @@ public:
   string getStreamDescription();
   string getStreamMetaData();
   string getProtocol();
-  std::function<void()> connectCallback; 
-  std::function<void()> disconnectCallback; 
+  void setHostName(const string& value);
+  void setPort(const string& value);
+  void setUserName(const string& value);
+  void setPassword(const string& value);
+  void setMountPoint(const string& value);
+  void setProtocol(const string& value);
+  void setBitRate(const string& value);
+  void setSampleRate(const string& value);
+  void setEncodingFormat(const string& value);
+  void setStreamName(const string& value);
+  void setStreamURL(const string& value);
+  void setStreamGenre(const string& value);
+  void setStreamArtist(const string& value);
+  void setStreamTitle(const string& value);
+  void setStreamDescription(const string& value);
+  void setStreamMetaData(const string& value);
+  std::function<void()> connectCallback;
+  std::function<void()> disconnectCallback;
   std::function<void()> metadataCallback; 
 private:
   Fl_Text_Buffer *buffer_about; 

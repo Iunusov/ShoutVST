@@ -28,12 +28,17 @@ class ShoutVST : public AudioEffectX {
   int GetBitrate();
   int GetTargetSampleRate();
   void UpdateMetadata(const string& metadata);
+  virtual VstInt32 getChunk(void** data, bool isPreset = false) override;
+  virtual VstInt32 setChunk(void* data, VstInt32 byteSize, bool isPreset = false) override;
 
  private:
+  std::string serializeState();
+  void deserializeState(const std::string& state);
   typedef std::lock_guard<std::recursive_mutex> guard;
   recursive_mutex mtx_;
   std::shared_ptr<ShoutVSTEncoder> encTmp;
   std::shared_ptr<ShoutVSTEncoder> encSelected;
   std::shared_ptr<ShoutVSTEditor> pEditor;
   LibShoutWrapper libShoutWrapper;
+  std::string savedState_;
 };
